@@ -1,15 +1,25 @@
 export class Event {
     id: number;
-    name: string;
-    date: Date;
-    time: Date;
+    nev: string;
+    datum: string;
+    ido: string;
+    egeszNapos: boolean;
+    prioritas: string;
+    emlekezteto: string;
+    reszletek: string;
 
-    constructor(id: number, name: string, date: Date, time: Date) {
-
-        
+    constructor(id: number, nev: string, datum: string, ido: string, egeszNapos: boolean, prioritas: string, emlekezteto: string, reszletek: string) {
         this.id = id;
-        this.name = name;
-        this.date = date;
-        this.time = time;
+        this.nev = nev;
+        this.datum = datum;
+        this.ido = ido;
+        this.egeszNapos = egeszNapos;
+        this.prioritas = prioritas;
+        this.emlekezteto = emlekezteto;
+        this.reszletek = reszletek;
     }
 }
+
+//export interface AllEvents{
+//    events: Event[];
+//}
