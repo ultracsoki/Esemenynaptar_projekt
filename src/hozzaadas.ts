@@ -18,4 +18,5 @@ function hozzaAd()
 
     const newEvent = new Event(0,name,date,time,allDay,reminder,priority,details);
     console.log(newEvent);
+    alert("Sikeresen Hozzáadtad")
 }

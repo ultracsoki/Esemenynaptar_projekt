@@ -24,6 +24,7 @@ async function addNewEvent() {
     const nameInput = document.getElementById('name') as HTMLInputElement;
     const dateInput = document.getElementById('date') as HTMLInputElement;
     const timeInput = document.getElementById('time') as HTMLInputElement;
+    const allDayCheckbox = document.getElementById('allDay') as HTMLInputElement;
     const prioritySelect = document.getElementById('priority') as HTMLSelectElement;
     const detailsInput = document.getElementById('details') as HTMLInputElement;
     const reminderInput = document.getElementById('reminder') as HTMLInputElement;
@@ -31,11 +32,12 @@ async function addNewEvent() {
     const name = nameInput.value;
     const date = dateInput.value;
     const time = timeInput.value;
+    const allDay = allDayCheckbox.checked;//Már nem False minden esetben
     const priority = prioritySelect.value;
     const details = detailsInput.value;
     const reminder = reminderInput.value
 
-    const newEvent = new Event(0, name, date, time, false, priority, reminder, details); // EMBER A SZERVER ADJA AZ ID-t
+    const newEvent = new Event(0, name, date, time, allDay, priority, reminder, details); // EMBER A SZERVER ADJA AZ ID-t
 
     const response = await fetch('https://retoolapi.dev/dFqFgC/data', {
         method: 'POST',
