@@ -5,47 +5,58 @@ import { Event } from "./Event";
 //Lehet elrontottam az egészed de a feltöltés működik
 
 document.getElementById('buttonAdd')!.addEventListener('click',addNewEvent);
+document.getElementById('allDay')!.addEventListener('input',egeszNapos);
 
-
+function egeszNapos()
+{
+    if((document.getElementById('time')! as HTMLInputElement).disabled == false)
+    {
+        (document.getElementById('time')! as HTMLInputElement).disabled = true;
+        (document.getElementById('time')! as HTMLInputElement).value = "00:00";
+    }
+    else 
+    {
+        (document.getElementById('time')! as HTMLInputElement).disabled = false;
+    }
+    
+}
 
 async function addNewEvent() {
-    const nameInput = document.getElementById('name') as HTMLInputElement;
-    const dateInput = document.getElementById('date') as HTMLInputElement;
-    const timeInput = document.getElementById('time') as HTMLInputElement;
-    const allDayCheckbox = document.getElementById('allDay') as HTMLInputElement;
-    const prioritySelect = document.getElementById('priority') as HTMLSelectElement;
-    const detailsInput = document.getElementById('details') as HTMLInputElement;
-    const reminderInput = document.getElementById('reminder') as HTMLInputElement;
-//validácio
+    const nameInput = (document.getElementById('name') as HTMLInputElement).value;
+    const dateInput = (document.getElementById('date') as HTMLInputElement).value;
+    let timeInput = (document.getElementById('time') as HTMLInputElement).value;
+    const allDayCheckbox = (document.getElementById('allDay') as HTMLInputElement).checked;
+    const prioritySelect = (document.getElementById('priority') as HTMLSelectElement).value
+    const detailsInput = (document.getElementById('details') as HTMLInputElement).value;
+    const reminderInput = (document.getElementById('reminder') as HTMLInputElement).value;
 
-    const name = nameInput.value;
-    const date = dateInput.value;
-    const time = timeInput.value;
-    const allDay = allDayCheckbox.checked;//Már nem False minden esetben
-    const priority = prioritySelect.value;
-    const details = detailsInput.value;
-    const reminder = reminderInput.value
 //ha üresenhagyod meghalsz
-    if (name.trim() === '') {
+    if (nameInput.trim() === '') {
         alert('Az esemény nevének kitöltése kötelező.');
         return; 
     }
+//dátum nem lehet 0
+    if(dateInput.toString() == "")
+    {
+        alert('Az esemény dátumának kitöltése kötelező.');
+        return;
+    }
 //egész napos e csóró
-    if (allDay) {
-        timeInput.value = '00:00';
-    } else if (time === '') {
+    if (allDayCheckbox) {
+        timeInput = '00:00';
+    } else if (timeInput === '') {
         alert('Az idő mező kitöltése kötelező, kivéve, ha az esemény egész napos.');
         return; 
     }
 //dátum validáció
     const currentDate = new Date();
-    const eventDate = new Date(date);
-    if (reminder !== '' && new Date(reminder) >= currentDate) {
+    const eventDate = new Date(dateInput);
+    if (reminderInput != '' && new Date(reminderInput) >= currentDate) {
         alert('Az emlékeztető csak a jelenlegi dátum előtti dátum lehet.');
-        return; // 
+        return;
     }
    
-    const newEvent = new Event(0, name, date, time, allDay, priority, reminder, details); // EMBER A SZERVER ADJA AZ ID-t
+    const newEvent = new Event(0, nameInput, dateInput, timeInput, allDayCheckbox, prioritySelect, reminderInput, detailsInput); // EMBER A SZERVER ADJA AZ ID-t
 
     const response = await fetch('https://retoolapi.dev/dFqFgC/data', {
         method: 'POST',
@@ -55,10 +66,10 @@ async function addNewEvent() {
         body: JSON.stringify(newEvent),
     });
    
-    /*if (response.ok) {
-        console.log('Az esemény hozzáadva a szerverhez.');
+    if (response.ok) {
+        alert('Az esemény hozzáadva a szerverhez.');
     } else {
-        console.error('Hiba történt az esemény hozzáadása közben.');
-    }*/
+        alert('Hiba történt az esemény hozzáadása közben.');
+    }
   
 }
