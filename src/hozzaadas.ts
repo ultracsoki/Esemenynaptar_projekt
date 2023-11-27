@@ -44,8 +44,7 @@ async function addNewEvent() {
         alert('Az emlékeztető csak a jelenlegi dátum előtti dátum lehet.');
         return; // 
     }
-
-
+   
     const newEvent = new Event(0, name, date, time, allDay, priority, reminder, details); // EMBER A SZERVER ADJA AZ ID-t
 
     const response = await fetch('https://retoolapi.dev/dFqFgC/data', {
@@ -61,4 +60,5 @@ async function addNewEvent() {
     } else {
         console.error('Hiba történt az esemény hozzáadása közben.');
     }*/
+  
 }

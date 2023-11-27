@@ -17,6 +17,5 @@ async function init()
     {
          throw new Error('Hiba történt a letöltés közben.');
     }
-    
-    
+       
 }
