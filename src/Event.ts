@@ -19,7 +19,3 @@ export class Event {
         this.reszletek = reszletek;
     }
 }
-
-//export interface AllEvents{
-//    events: Event[];
-//}

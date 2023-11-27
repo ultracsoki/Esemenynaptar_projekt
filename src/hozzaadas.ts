@@ -49,9 +49,7 @@ async function addNewEvent() {
         return; 
     }
 //dátum validáció
-    const currentDate = new Date();
-    const eventDate = new Date(dateInput);
-    if (reminderInput != '' && new Date(reminderInput) >= currentDate) {
+    if (reminderInput != '' && reminderInput > dateInput) {
         alert('Az emlékeztető csak a jelenlegi dátum előtti dátum lehet.');
         return;
     }
@@ -67,6 +65,13 @@ async function addNewEvent() {
     });
    
     if (response.ok) {
+        (document.getElementById('name') as HTMLInputElement).value = "";
+        (document.getElementById('date') as HTMLInputElement).value = "";
+        (document.getElementById('time') as HTMLInputElement).value = "";
+        (document.getElementById('allDay') as HTMLInputElement).checked = false;
+        (document.getElementById('priority') as HTMLInputElement).value = "";
+        (document.getElementById('details') as HTMLInputElement).value = "";
+        (document.getElementById('reminder') as HTMLInputElement).value = "";
         alert('Az esemény hozzáadva a szerverhez.');
     } else {
         alert('Hiba történt az esemény hozzáadása közben.');
