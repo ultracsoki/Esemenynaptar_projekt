@@ -56,4 +56,3 @@ function renderEventList(eventList: Event[]) {
     console.log(eventList);
     document.body.appendChild(cardElement);
 }
- 
