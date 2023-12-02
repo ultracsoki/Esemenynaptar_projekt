@@ -30,15 +30,16 @@ function renderEventList(eventList: Event[]) {
  
    
     eventListContainer.innerHTML = '';
-
     
+    //EventList sorbarendezése idő szerint
+    eventList.sort((a,b) => {
+        return a.datum.localeCompare(b.datum);
+    });
  
     let cardElement = document.getElementById('eventList')!;
     eventList.forEach((event) => {
 
-        eventList.sort((a,b) => {
-            return parseInt(a.datum) - parseInt(b.datum);
-        });
+        
 
         let cardBodyClass = "card-body";
         
@@ -58,10 +59,11 @@ function renderEventList(eventList: Event[]) {
 
         cardElement.innerHTML += `
         <div class="card">
-            <div class="card-body ${cardBodyClass}">
+            <div class="card-body ${cardBodyClass}" id="tbody">
             <h5 class="card-title">${event.nev}</h5>
                 <p class="card-text">Dátum: ${event.datum}</p>
                 <p class="card-text">Idő: ${event.ido}</p>
+                <p class="card-text">Egész napos: ${(event.egeszNapos) ? "✓" : "✘"}</p>
                 <p class="card-text">Prioritás: ${event.prioritas}</p>
                 <p class="card-text">Emlékeztető: ${event.emlekezteto}</p>
                 <p class="card-text">Részletek: ${event.reszletek}</p>
@@ -71,9 +73,10 @@ function renderEventList(eventList: Event[]) {
         </div>
         `;
     });
-}//<--ha kikommenteled akkor ezt tavolitssd el
-   /* document.body.appendChild(cardElement);
+//}//<--ha kikommenteled akkor ezt tavolitssd el
+    document.body.appendChild(cardElement);
 
+    //Elemek törlése
     const deleteButtons = document.querySelectorAll('.delete-button');
     deleteButtons.forEach(button => {
         button.addEventListener('click', () => {
@@ -84,6 +87,26 @@ function renderEventList(eventList: Event[]) {
                 const eventId = button.getAttribute('data-id');
                 deleteEvent(eventId);
             }
+        });
+    });
+
+    //Elemek módosítása
+    const modifyButtons = document.querySelectorAll('.modify-button');
+    modifyButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            const nev = eventList[parseInt(button.getAttribute('data-id')!)].nev;
+            const datum = eventList[parseInt(button.getAttribute('data-id')!)].datum;
+            const ido = eventList[parseInt(button.getAttribute('data-id')!)].ido;
+            const egeszNapos = eventList[parseInt(button.getAttribute('data-id')!)].egeszNapos;
+            const prioritas = eventList[parseInt(button.getAttribute('data-id')!)].prioritas;
+            const emlekezteto = eventList[parseInt(button.getAttribute('data-id')!)].emlekezteto;
+            const reszletek = eventList[parseInt(button.getAttribute('data-id')!)].reszletek;
+
+            window.location.replace("http://localhost:5173/hozzaadas.html");
+            //if (confirmDelete) {
+            //    const eventId = button.getAttribute('data-id');
+            //    deleteEvent(eventId);
+            //}
         });
     });
 
@@ -98,7 +121,7 @@ async function deleteEvent(eventId: string | null) {
             return;
         }
 
-        const response = await fetch(`https://retoolapi.dev/dFqFgC/data${eventId}`, {
+        const response = await fetch(`https://retoolapi.dev/dFqFgC/data/${eventId}`, {
             method: 'DELETE',
         });
 
@@ -111,5 +134,5 @@ async function deleteEvent(eventId: string | null) {
     } catch (error) {
         console.error('Hiba történt az esemény törlése közben:', error);
     }
-}*/
+}
 
