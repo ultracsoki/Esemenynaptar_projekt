@@ -92,23 +92,22 @@ function renderEventList(eventList: Event[]) {
 
     //Elemek módosítása
     const modifyButtons = document.querySelectorAll('.modify-button');
-    modifyButtons.forEach(button => {
+    for (let i = 0; i < modifyButtons.length; i++) {
+        const button = modifyButtons[i];
         button.addEventListener('click', () => {
-            const nev = eventList[parseInt(button.getAttribute('data-id')!)].nev;
-            const datum = eventList[parseInt(button.getAttribute('data-id')!)].datum;
-            const ido = eventList[parseInt(button.getAttribute('data-id')!)].ido;
-            const egeszNapos = eventList[parseInt(button.getAttribute('data-id')!)].egeszNapos;
-            const prioritas = eventList[parseInt(button.getAttribute('data-id')!)].prioritas;
-            const emlekezteto = eventList[parseInt(button.getAttribute('data-id')!)].emlekezteto;
-            const reszletek = eventList[parseInt(button.getAttribute('data-id')!)].reszletek;
+            const nev = eventList[i].nev;
+            const datum = eventList[i].datum;
+            const ido = eventList[i].ido;
+            const egeszNapos = eventList[i].egeszNapos;
+            const prioritas = eventList[i].prioritas;
+            const emlekezteto = eventList[i].emlekezteto;
+            const reszletek = eventList[i].reszletek;
 
-            window.location.replace("http://localhost:5173/hozzaadas.html");
-            //if (confirmDelete) {
-            //    const eventId = button.getAttribute('data-id');
-            //    deleteEvent(eventId);
-            //}
+            const url = `http://localhost:5173/hozzaadas.html?nev=${encodeURIComponent(nev)}&datum=${encodeURIComponent(datum)}&ido=${encodeURIComponent(ido)}&egeszNapos=${encodeURIComponent(egeszNapos)}&prioritas=${encodeURIComponent(prioritas)}&emlekezteto=${encodeURIComponent(emlekezteto)}&reszletek=${encodeURIComponent(reszletek)}`;
+
+            window.open(url, "_blank");
         });
-    });
+    }
 
    
 }
