@@ -76,7 +76,7 @@ async function addNewEvent() {
 }
 
 
-//Módosítás gombra történő 
+//Módosítás gombra történő kattintáskor
 document.addEventListener('DOMContentLoaded', () => {
     const params = new URLSearchParams(window.location.search);
 
@@ -84,7 +84,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const nev = params.get('nev')!;
     const datum = params.get('datum')!;
     const ido = params.get('ido')!;
-    const egeszNapos = params.get('egeszNapos')!;
     const prioritas = params.get('prioritas')!;
     const emlekezteto = params.get('emlekezteto')!;
     const reszletek = params.get('reszletek')!;
