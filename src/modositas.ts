@@ -1,8 +1,8 @@
 import { updateEvent } from "./szervermuveletek";
 import { Event } from "./Event";
 
-let id = "";
-let eventId = 0;
+let eventId = "";
+let id = 0;
 let nev = "";
 let datum = "";
 let egesznapos : boolean = false;
@@ -16,14 +16,14 @@ document.addEventListener('DOMContentLoaded', () => {
     const params = new URLSearchParams(window.location.search);
 
     // Értékek megkapása
+    id = parseInt(params.get('id')!);
     nev = params.get('nev')!;
     datum = params.get('datum')!;
     ido = params.get('ido')!;
     prioritas = params.get('prioritas')!;
     emlekezteto = params.get('emlekezteto')!;
     reszletek = params.get('reszletek')!;
-    eventId = parseInt(params.get('id')!);
-    //id = 
+    eventId = params.get('i')!;
 
     // Adatok betöltése megfelelő helyre
     const dateName = document.getElementById('nameModify') as HTMLInputElement;
@@ -51,5 +51,7 @@ document.addEventListener('DOMContentLoaded', () => {
 );
 
 document.getElementById('buttonModify')!.addEventListener('click',() => {
-    updateEvent(id,new Event(eventId,"Bukarest",datum,ido,egesznapos,prioritas,emlekezteto,reszletek));
+    updateEvent(eventId,new Event(id,"Bukarest",datum,ido,egesznapos,prioritas,emlekezteto,reszletek));
+
+    window.close();
 });
