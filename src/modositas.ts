@@ -1,6 +1,7 @@
 import { updateEvent } from "./szervermuveletek";
 import { Event } from "./Event";
 import { egeszNapos } from "./kliensmuveletek";
+import { validacio } from "./validacio";
 
 let id = 0;
 let nev = "";
@@ -35,28 +36,22 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
     // Adatok betöltése megfelelő helyre
-    const dateName = document.getElementById('nameModify') as HTMLInputElement;
-    dateName.value = nev;
-    const dataDate = document.getElementById('dateModify') as HTMLInputElement;
-    dataDate.value = datum;
-    const dataTime = document.getElementById('timeModify') as HTMLInputElement;
-    dataTime.value = ido;
-    const dataAllday = document.getElementById('allDayModify') as HTMLInputElement;
+    (document.getElementById('nameModify') as HTMLInputElement).value = nev;
+    (document.getElementById('dateModify') as HTMLInputElement).value = datum;
+    (document.getElementById('timeModify') as HTMLInputElement).value = ido;
     if (egeszNaposString == "true") {
-        dataAllday.checked = true;
+        (document.getElementById('allDayModify') as HTMLInputElement).checked = true;
         (document.getElementById('timeModify')! as HTMLInputElement).disabled = true;
         egesznapos = true;
     }
     else {
-        dataAllday.checked = false;
+        (document.getElementById('allDayModify') as HTMLInputElement).checked = false;
+        (document.getElementById('timeModify')! as HTMLInputElement).disabled = false;
         egesznapos = false;
     }
-    const dataPriority = document.getElementById('priorityModify') as HTMLInputElement;
-    dataPriority.value = prioritas;
-    const dataReminder = document.getElementById('reminderModify') as HTMLInputElement;
-    dataReminder.value = emlekezteto;
-    const dataDetails = document.getElementById('detailsModify') as HTMLInputElement;
-    dataDetails.value = reszletek;
+    (document.getElementById('priorityModify') as HTMLInputElement).value = prioritas;
+    (document.getElementById('reminderModify') as HTMLInputElement).value = emlekezteto;
+    (document.getElementById('detailsModify') as HTMLInputElement).value = reszletek;
 }
 );
 
@@ -67,11 +62,22 @@ document.getElementById('buttonModify')!.addEventListener('click',() => {
     prioritas = (document.getElementById('priorityModify') as HTMLInputElement).value;
     emlekezteto = (document.getElementById('reminderModify') as HTMLInputElement).value;
     reszletek = (document.getElementById('detailsModify') as HTMLInputElement).value;
+    egesznapos = (document.getElementById('allDayModify') as HTMLInputElement).checked;
+
+    try {
+        validacio(nev,datum,ido,egesznapos,prioritas,reszletek,emlekezteto);
+    } catch (error) {
+        return;
+    }
+
     updateEvent(id.toString(),new Event(id,nev,datum,ido,egesznapos,prioritas,emlekezteto,reszletek));
+    alert("Esemény sikeresen módosítva");
+    window.location.replace("http://localhost:5173/esemenyek.html");
     
     //window.open("https://localhost:5173/esemenyek.html");
     //location.reload("https://localhost:5173/esemenyek.html");
 
     //window.location.href = "http://localhost:5173/esemenyek.html";
     //window.close();
+    //window.location.replace("http://localhost:5173/esemenyek.html");
 });

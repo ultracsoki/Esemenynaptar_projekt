@@ -3,7 +3,7 @@ import { Event } from './Event';
 document.addEventListener('DOMContentLoaded', displayAllEvents);
  
 //Események letöltése
-async function displayAllEvents() {
+export async function displayAllEvents() {
     try {
         const response = await fetch('https://retoolapi.dev/dFqFgC/data');
         if (!response.ok) {
@@ -106,7 +106,7 @@ function renderEventList(eventList: Event[]) {
 
             const url = `http://localhost:5173/modositas.html?nev=${encodeURIComponent(nev)}&datum=${encodeURIComponent(datum)}&ido=${encodeURIComponent(ido)}&egeszNapos=${encodeURIComponent(egeszNapos)}&prioritas=${encodeURIComponent(prioritas)}&emlekezteto=${encodeURIComponent(emlekezteto)}&reszletek=${encodeURIComponent(reszletek)}&id=${encodeURIComponent(id)}`;
 
-            window.open(url, "_blank");
+            window.location.replace(url);
         });
     }
 

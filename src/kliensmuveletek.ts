@@ -1,4 +1,5 @@
 import { Event } from "./Event";
+import { validacio } from "./validacio";
 
 document.getElementById('buttonAdd')!.addEventListener('click', addNewEvent);
 document.getElementById('allDay')!.addEventListener('input', egeszNaposParamNelkul);
@@ -28,26 +29,9 @@ async function addNewEvent() {
     const detailsInput = (document.getElementById('details') as HTMLInputElement).value;
     const reminderInput = (document.getElementById('reminder') as HTMLInputElement).value;
 
-    
-    if (nameInput.trim() === '') {
-        alert('Az esemény nevének kitöltése kötelező.');
-        return;
-    }
-    //dátum nem lehet 0
-    if (dateInput.toString() == "") {
-        alert('Az esemény dátumának kitöltése kötelező.');
-        return;
-    }
-    //egész napos e 
-    if (allDayCheckbox) {
-        timeInput = '00:00';
-    } else if (timeInput === '') {
-        alert('Az idő mező kitöltése kötelező, kivéve, ha az esemény egész napos.');
-        return;
-    }
-    //dátum validáció
-    if (reminderInput != '' && reminderInput > dateInput) {
-        alert('Az emlékeztető csak a jelenlegi dátum előtti dátum lehet.');
+    try {
+        validacio(nameInput,dateInput,timeInput,allDayCheckbox,prioritySelect,detailsInput,reminderInput);
+    } catch (error) {
         return;
     }
 
