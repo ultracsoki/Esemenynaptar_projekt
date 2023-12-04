@@ -23,7 +23,7 @@ async function addNewEvent() {
     const detailsInput = (document.getElementById('details') as HTMLInputElement).value;
     const reminderInput = (document.getElementById('reminder') as HTMLInputElement).value;
 
-    //ha üresenhagyod meghalsz
+    
     if (nameInput.trim() === '') {
         alert('Az esemény nevének kitöltése kötelező.');
         return;
@@ -33,7 +33,7 @@ async function addNewEvent() {
         alert('Az esemény dátumának kitöltése kötelező.');
         return;
     }
-    //egész napos e csóró
+    //egész napos e 
     if (allDayCheckbox) {
         timeInput = '00:00';
     } else if (timeInput === '') {
@@ -71,39 +71,3 @@ async function addNewEvent() {
 
 }
 
-
-//Módosítás gombra történő kattintáskor
-document.addEventListener('DOMContentLoaded', () => {
-    const params = new URLSearchParams(window.location.search);
-
-    // Értékek megkapása
-    const nev = params.get('nev')!;
-    const datum = params.get('datum')!;
-    const ido = params.get('ido')!;
-    const prioritas = params.get('prioritas')!;
-    const emlekezteto = params.get('emlekezteto')!;
-    const reszletek = params.get('reszletek')!;
-
-    // Adatok betöltése megfelelő helyre
-    const dateName = document.getElementById('name') as HTMLInputElement;
-    dateName.value = nev;
-    const dataDate = document.getElementById('date') as HTMLInputElement;
-    dataDate.value = datum;
-    const dataTime = document.getElementById('time') as HTMLInputElement;
-    dataTime.value = ido;
-    const dataAllday = document.getElementById('allDay') as HTMLInputElement;
-    if (ido == "00:00") {
-        dataAllday.checked = true;
-        (document.getElementById('time')! as HTMLInputElement).disabled = true;
-    }
-    else {
-        dataAllday.checked = false;
-    }
-    const dataPriority = document.getElementById('priority') as HTMLInputElement;
-    dataPriority.value = prioritas;
-    const dataReminder = document.getElementById('reminder') as HTMLInputElement;
-    dataReminder.value = emlekezteto;
-    const dataDetails = document.getElementById('details') as HTMLInputElement;
-    dataDetails.value = reszletek;
-}
-);

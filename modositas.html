@@ -31,33 +31,33 @@
       <form class="border p-4 rounded">
           <div class="mb-3">
 
-              <label for="name" class="form-label">Esemény neve:</label>
-              <input type="text" class="form-control" id="name" name="name">
+              <label for="nameModify" class="form-label">Esemény neve:</label>
+              <input type="text" class="form-control" id="nameModify" name="nameModify">
           </div>
           <div class="mb-3">
 
-              <label for="date" class="form-label">Dátum:</label>
-              <input type="date" class="form-control" id="date" name="date">
+              <label for="dateModify" class="form-label">Dátum:</label>
+              <input type="date" class="form-control" id="dateModify" name="dateModify">
           </div>
           <div class="mb-3">
 
-              <label for="time" class="form-label">Idő:</label>
-              <input type="time" class="form-control" id="time" name="time">
+              <label for="timeModify" class="form-label">Idő:</label>
+              <input type="time" class="form-control" id="timeModify" name="timeModify">
           </div>
           <div class="mb-3 form-check">
 
-              <input type="checkbox" class="form-check-input" id="allDay" name="allDay">
-              <label class="form-check-label" for="allDay">Egész napos</label>
+              <input type="checkbox" class="form-check-input" id="allDayModify" name="allDayModify">
+              <label class="form-check-label" for="allDayModify">Egész napos</label>
           </div>
           <div class="mb-3">
 
-              <label for="reminder" class="form-label">Emlékeztető:</label>
-              <input type="date" class="form-control" id="reminder" name="reminder">
+              <label for="reminderModify" class="form-label">Emlékeztető:</label>
+              <input type="date" class="form-control" id="reminderModify" name="reminderModify">
           </div>
           <div class="mb-3">
 
-              <label for="priority" class="form-label">Prioritás:</label>
-              <select class="form-select" id="priority" name="priority">
+              <label for="priorityModify" class="form-label">Prioritás:</label>
+              <select class="form-select" id="priorityModify" name="priorityModify">
                   <option value="-">-</option>
                   <option value="Alacsony">Alacsony</option>
                   <option value="Közepes">Közepes</option>
@@ -66,8 +66,8 @@
           </div>
           <div class="mb-3">
 
-              <label for="details" class="form-label">Részletek:</label>
-              <input type="text" class="form-control" id="details" name="details">
+              <label for="detailsModify" class="form-label">Részletek:</label>
+              <input type="text" class="form-control" id="detailsModify" name="detailsModify">
           </div>
 
           <button type="submit" class="btn btn-primary" id="buttonModify">Módosítás</button>
@@ -76,9 +76,7 @@
 </div> 
 
       <script type="module" src="/src/main.ts"></script>
-      <script type="module" src="/src/kliensmuveletek.ts"></script>
-
-
+      <script type="module" src="/src/modositas.ts"></script>
       
 </body>
 </html>
