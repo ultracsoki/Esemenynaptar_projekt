@@ -104,7 +104,7 @@ function renderEventList(eventList: Event[]) {
             const emlekezteto = eventList[i].emlekezteto;
             const reszletek = eventList[i].reszletek;
 
-            const url = `http://localhost:5173/modositas.html?nev=${encodeURIComponent(nev)}&datum=${encodeURIComponent(datum)}&ido=${encodeURIComponent(ido)}&egeszNapos=${encodeURIComponent(egeszNapos)}&prioritas=${encodeURIComponent(prioritas)}&emlekezteto=${encodeURIComponent(emlekezteto)}&reszletek=${encodeURIComponent(reszletek)}&id=${encodeURIComponent(id)}&eventId=${encodeURIComponent(i)}`;
+            const url = `http://localhost:5173/modositas.html?nev=${encodeURIComponent(nev)}&datum=${encodeURIComponent(datum)}&ido=${encodeURIComponent(ido)}&egeszNapos=${encodeURIComponent(egeszNapos)}&prioritas=${encodeURIComponent(prioritas)}&emlekezteto=${encodeURIComponent(emlekezteto)}&reszletek=${encodeURIComponent(reszletek)}&id=${encodeURIComponent(id)}`;
 
             window.open(url, "_blank");
         });

@@ -1,7 +1,6 @@
 import { updateEvent } from "./szervermuveletek";
 import { Event } from "./Event";
 
-let eventId = "";
 let id = 0;
 let nev = "";
 let datum = "";
@@ -23,7 +22,6 @@ document.addEventListener('DOMContentLoaded', () => {
     prioritas = params.get('prioritas')!;
     emlekezteto = params.get('emlekezteto')!;
     reszletek = params.get('reszletek')!;
-    eventId = params.get('i')!;
 
     // Adatok betöltése megfelelő helyre
     const dateName = document.getElementById('nameModify') as HTMLInputElement;
@@ -40,6 +38,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     else {
         dataAllday.checked = false;
+        egesznapos = false;
     }
     const dataPriority = document.getElementById('priorityModify') as HTMLInputElement;
     dataPriority.value = prioritas;
@@ -51,7 +50,17 @@ document.addEventListener('DOMContentLoaded', () => {
 );
 
 document.getElementById('buttonModify')!.addEventListener('click',() => {
-    updateEvent(eventId,new Event(id,"Bukarest",datum,ido,egesznapos,prioritas,emlekezteto,reszletek));
+    nev = (document.getElementById('nameModify') as HTMLInputElement).value;
+    datum = (document.getElementById('dateModify') as HTMLInputElement).value;
+    ido = (document.getElementById('timeModify') as HTMLInputElement).value;
+    prioritas = (document.getElementById('priorityModify') as HTMLInputElement).value;
+    emlekezteto = (document.getElementById('reminderModify') as HTMLInputElement).value;
+    reszletek = (document.getElementById('detailsModify') as HTMLInputElement).value;
+    updateEvent(id.toString(),new Event(id,nev,datum,ido,egesznapos,prioritas,emlekezteto,reszletek));
+    
+    //window.open("https://localhost:5173/esemenyek.html");
+    //location.reload("https://localhost:5173/esemenyek.html");
 
-    window.close();
+    //window.location.href = "http://localhost:5173/esemenyek.html";
+    //window.close();
 });
