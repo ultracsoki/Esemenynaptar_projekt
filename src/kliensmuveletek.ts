@@ -1,8 +1,4 @@
 import { Event } from "./Event";
-//import { AllEvents } from "./Event";
-
-//Sok mindent helyre kéne tenni!!!!!!
-//Lehet elrontottam az egészed de a feltöltés működik
 
 document.getElementById('buttonAdd')!.addEventListener('click', addNewEvent);
 document.getElementById('allDay')!.addEventListener('input', egeszNapos);

@@ -2,6 +2,7 @@ import { Event } from './Event';
  
 document.addEventListener('DOMContentLoaded', displayAllEvents);
  
+//Események letöltése
 async function displayAllEvents() {
     try {
         const response = await fetch('https://retoolapi.dev/dFqFgC/data');
@@ -20,7 +21,8 @@ async function displayAllEvents() {
         console.error('Hiba történt a letöltés közben:', );
     }
 }
- 
+
+//Események kilistázása a képernyőre
 function renderEventList(eventList: Event[]) {
     const eventListContainer = document.getElementById('eventList');
     if (!eventListContainer) {
@@ -73,14 +75,12 @@ function renderEventList(eventList: Event[]) {
         </div>
         `;
     });
-//}//<--ha kikommenteled akkor ezt tavolitssd el
     document.body.appendChild(cardElement);
 
     //Elemek törlése
     const deleteButtons = document.querySelectorAll('.delete-button');
     deleteButtons.forEach(button => {
         button.addEventListener('click', () => {
-            //hasonlo mint az alert csak itt vannak gombok
             const confirmDelete = window.confirm('Biztosan törölni szeretné ezt az eseményt?');
 
             if (confirmDelete) {
@@ -112,6 +112,7 @@ function renderEventList(eventList: Event[]) {
    
 }
 
+//Adatbázisból való element törlése
 async function deleteEvent(eventId: string | null) {
     try {
         // nem e null az id
