@@ -60,7 +60,7 @@ function renderEventList(eventList: Event[]) {
         }
 
         cardElement.innerHTML += `
-        <div class="card">
+        <div class="card" style=" border-radius: 20px; overflow: hidden;">
             <div class="card-body ${cardBodyClass}" id="tbody">
             <h5 class="card-title">${event.nev}</h5>
                 <p class="card-text">Dátum: ${event.datum}</p>
