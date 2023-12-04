@@ -95,6 +95,7 @@ function renderEventList(eventList: Event[]) {
     for (let i = 0; i < modifyButtons.length; i++) {
         const button = modifyButtons[i];
         button.addEventListener('click', () => {
+            const id = eventList[i].id;
             const nev = eventList[i].nev;
             const datum = eventList[i].datum;
             const ido = eventList[i].ido;
@@ -103,7 +104,7 @@ function renderEventList(eventList: Event[]) {
             const emlekezteto = eventList[i].emlekezteto;
             const reszletek = eventList[i].reszletek;
 
-            const url = `http://localhost:5173/modositas.html?nev=${encodeURIComponent(nev)}&datum=${encodeURIComponent(datum)}&ido=${encodeURIComponent(ido)}&egeszNapos=${encodeURIComponent(egeszNapos)}&prioritas=${encodeURIComponent(prioritas)}&emlekezteto=${encodeURIComponent(emlekezteto)}&reszletek=${encodeURIComponent(reszletek)}`;
+            const url = `http://localhost:5173/modositas.html?nev=${encodeURIComponent(nev)}&datum=${encodeURIComponent(datum)}&ido=${encodeURIComponent(ido)}&egeszNapos=${encodeURIComponent(egeszNapos)}&prioritas=${encodeURIComponent(prioritas)}&emlekezteto=${encodeURIComponent(emlekezteto)}&reszletek=${encodeURIComponent(reszletek)}&id=${encodeURIComponent(id)}&eventId=${encodeURIComponent(i)}`;
 
             window.open(url, "_blank");
         });
@@ -133,6 +134,27 @@ async function deleteEvent(eventId: string | null) {
         displayAllEvents();
     } catch (error) {
         console.error('Hiba történt az esemény törlése közben:', error);
+    }
+}
+
+export async function updateEvent(eventId: string, updatedEvent: Event) {
+    try {
+        const response = await fetch(`https://retoolapi.dev/dFqFgC/data/${eventId}`, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(updatedEvent),
+        });
+ 
+        if (!response.ok) {
+            throw new Error('Hiba történt az esemény módosítása közben.');
+        }
+ 
+        // Frissítés módosítás utan
+        displayAllEvents();
+    } catch (error) {
+        console.error('Hiba történt az esemény módosítása közben:', error);
     }
 }
 

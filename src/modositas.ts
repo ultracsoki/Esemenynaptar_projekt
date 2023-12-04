@@ -1,15 +1,29 @@
+import { updateEvent } from "./szervermuveletek";
+import { Event } from "./Event";
+
+let id = "";
+let eventId = 0;
+let nev = "";
+let datum = "";
+let egesznapos : boolean = false;
+let ido = "";
+let prioritas = "";
+let emlekezteto = "";
+let reszletek = "";
 
 //Módosítás gombra történő kattintáskor
 document.addEventListener('DOMContentLoaded', () => {
     const params = new URLSearchParams(window.location.search);
 
     // Értékek megkapása
-    const nev = params.get('nev')!;
-    const datum = params.get('datum')!;
-    const ido = params.get('ido')!;
-    const prioritas = params.get('prioritas')!;
-    const emlekezteto = params.get('emlekezteto')!;
-    const reszletek = params.get('reszletek')!;
+    nev = params.get('nev')!;
+    datum = params.get('datum')!;
+    ido = params.get('ido')!;
+    prioritas = params.get('prioritas')!;
+    emlekezteto = params.get('emlekezteto')!;
+    reszletek = params.get('reszletek')!;
+    eventId = parseInt(params.get('id')!);
+    id = 
 
     // Adatok betöltése megfelelő helyre
     const dateName = document.getElementById('nameModify') as HTMLInputElement;
@@ -22,6 +36,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (ido == "00:00") {
         dataAllday.checked = true;
         (document.getElementById('timeModify')! as HTMLInputElement).disabled = true;
+        egesznapos = true;
     }
     else {
         dataAllday.checked = false;
@@ -36,5 +51,5 @@ document.addEventListener('DOMContentLoaded', () => {
 );
 
 document.getElementById('buttonModify')!.addEventListener('click',() => {
-    
+    updateEvent(id,new Event(eventId,"Bukarest",datum,ido,egesznapos,prioritas,emlekezteto,reszletek));
 });
