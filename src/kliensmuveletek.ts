@@ -30,7 +30,7 @@ async function addNewEvent() {
     const reminderInput = (document.getElementById('reminder') as HTMLInputElement).value;
 
     try {
-        validacio(nameInput,dateInput,timeInput,allDayCheckbox,prioritySelect,detailsInput,reminderInput);
+        validacio(nameInput,dateInput,timeInput,allDayCheckbox,reminderInput);
     } catch (error) {
         return;
     }

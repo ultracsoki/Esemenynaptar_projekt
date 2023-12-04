@@ -1,4 +1,4 @@
-export function validacio(nev: string, datum: string, ido :string, egesznapos: boolean, prioritas: string, reszletek: string, emlekezteto: string)
+export function validacio(nev: string, datum: string, ido :string, egesznapos: boolean, emlekezteto: string)
 {
     if (nev.trim() === '') {
         alert('Az esemény nevének kitöltése kötelező.');

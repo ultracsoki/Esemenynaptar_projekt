@@ -65,7 +65,7 @@ document.getElementById('buttonModify')!.addEventListener('click',() => {
     egesznapos = (document.getElementById('allDayModify') as HTMLInputElement).checked;
 
     try {
-        validacio(nev,datum,ido,egesznapos,prioritas,reszletek,emlekezteto);
+        validacio(nev,datum,ido,egesznapos,emlekezteto);
     } catch (error) {
         return;
     }
