@@ -1,14 +1,23 @@
 import { updateEvent } from "./szervermuveletek";
 import { Event } from "./Event";
+import { egeszNapos } from "./kliensmuveletek";
 
 let id = 0;
 let nev = "";
 let datum = "";
 let egesznapos : boolean = false;
+let egeszNaposString = "";
 let ido = "";
 let prioritas = "";
 let emlekezteto = "";
 let reszletek = "";
+
+document.getElementById('allDayModify')!.addEventListener('click',egeszNaposParamNelkul);
+
+function egeszNaposParamNelkul()
+{
+    egeszNapos('timeModify');
+}
 
 //Módosítás gombra történő kattintáskor
 document.addEventListener('DOMContentLoaded', () => {
@@ -22,6 +31,8 @@ document.addEventListener('DOMContentLoaded', () => {
     prioritas = params.get('prioritas')!;
     emlekezteto = params.get('emlekezteto')!;
     reszletek = params.get('reszletek')!;
+    egeszNaposString = params.get('egeszNapos')!;
+
 
     // Adatok betöltése megfelelő helyre
     const dateName = document.getElementById('nameModify') as HTMLInputElement;
@@ -31,7 +42,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const dataTime = document.getElementById('timeModify') as HTMLInputElement;
     dataTime.value = ido;
     const dataAllday = document.getElementById('allDayModify') as HTMLInputElement;
-    if (ido == "00:00") {
+    if (egeszNaposString == "true") {
         dataAllday.checked = true;
         (document.getElementById('timeModify')! as HTMLInputElement).disabled = true;
         egesznapos = true;

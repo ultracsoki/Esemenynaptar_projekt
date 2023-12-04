@@ -1,15 +1,20 @@
 import { Event } from "./Event";
 
 document.getElementById('buttonAdd')!.addEventListener('click', addNewEvent);
-document.getElementById('allDay')!.addEventListener('input', egeszNapos);
+document.getElementById('allDay')!.addEventListener('input', egeszNaposParamNelkul);
 
-function egeszNapos() {
-    if ((document.getElementById('time')! as HTMLInputElement).disabled == false) {
-        (document.getElementById('time')! as HTMLInputElement).disabled = true;
-        (document.getElementById('time')! as HTMLInputElement).value = "00:00";
+function egeszNaposParamNelkul()
+{
+    egeszNapos('time');
+}
+
+export function egeszNapos(timeInput: string) {
+    if ((document.getElementById(timeInput)! as HTMLInputElement).disabled == false) {
+        (document.getElementById(timeInput)! as HTMLInputElement).disabled = true;
+        (document.getElementById(timeInput)! as HTMLInputElement).value = "00:00";
     }
     else {
-        (document.getElementById('time')! as HTMLInputElement).disabled = false;
+        (document.getElementById(timeInput)! as HTMLInputElement).disabled = false;
     }
 
 }
