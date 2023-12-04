@@ -23,28 +23,7 @@ async function addNewEvent() {
     const detailsInput = (document.getElementById('details') as HTMLInputElement).value;
     const reminderInput = (document.getElementById('reminder') as HTMLInputElement).value;
 
-    //ha üresenhagyod meghalsz
-    if (nameInput.trim() === '') {
-        alert('Az esemény nevének kitöltése kötelező.');
-        return;
-    }
-    //dátum nem lehet 0
-    if (dateInput.toString() == "") {
-        alert('Az esemény dátumának kitöltése kötelező.');
-        return;
-    }
-    //egész napos e csóró
-    if (allDayCheckbox) {
-        timeInput = '00:00';
-    } else if (timeInput === '') {
-        alert('Az idő mező kitöltése kötelező, kivéve, ha az esemény egész napos.');
-        return;
-    }
-    //dátum validáció
-    if (reminderInput != '' && reminderInput > dateInput) {
-        alert('Az emlékeztető csak a jelenlegi dátum előtti dátum lehet.');
-        return;
-    }
+    validacio(nameInput,dateInput,timeInput,allDayCheckbox,prioritySelect,detailsInput,reminderInput);
 
     const newEvent = new Event(0, nameInput, dateInput, timeInput, allDayCheckbox, prioritySelect, reminderInput, detailsInput); // EMBER A SZERVER ADJA AZ ID-t
 
@@ -69,6 +48,32 @@ async function addNewEvent() {
         alert('Hiba történt az esemény hozzáadása közben.');
     }
 
+}
+
+function validacio(nameInput: string, dateInput: string, timeInput: string, allDayCheckbox: boolean, prioritySelect: string, detailsInput: string, reminderInput: string)
+{
+    //ha üresenhagyod meghalsz
+    if (nameInput.trim() === '') {
+        alert('Az esemény nevének kitöltése kötelező.');
+        return;
+    }
+    //dátum nem lehet 0
+    if (dateInput.toString() == "") {
+        alert('Az esemény dátumának kitöltése kötelező.');
+        return;
+    }
+    //egész napos e csóró
+    if (allDayCheckbox) {
+        timeInput = '00:00';
+    } else if (timeInput === '') {
+        alert('Az idő mező kitöltése kötelező, kivéve, ha az esemény egész napos.');
+        return;
+    }
+    //dátum validáció
+    if (reminderInput != '' && reminderInput > dateInput) {
+        alert('Az emlékeztető csak a jelenlegi dátum előtti dátum lehet.');
+        return;
+    }
 }
 
 
