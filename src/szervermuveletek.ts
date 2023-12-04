@@ -132,7 +132,7 @@ async function deleteEvent(eventId: string | null) {
 
         // Frissites torles utan
         displayAllEvents();
-    } catch (error) {
+    } catch (error) { 
         console.error('Hiba történt az esemény törlése közben:', error);
     }
 }

@@ -23,7 +23,7 @@ document.addEventListener('DOMContentLoaded', () => {
     emlekezteto = params.get('emlekezteto')!;
     reszletek = params.get('reszletek')!;
     eventId = parseInt(params.get('id')!);
-    id = 
+    //id = 
 
     // Adatok betöltése megfelelő helyre
     const dateName = document.getElementById('nameModify') as HTMLInputElement;
