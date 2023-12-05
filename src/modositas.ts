@@ -73,11 +73,4 @@ document.getElementById('buttonModify')!.addEventListener('click',() => {
     updateEvent(id.toString(),new Event(id,nev,datum,ido,egesznapos,prioritas,emlekezteto,reszletek));
     alert("Esemény sikeresen módosítva");
     window.location.replace("http://localhost:5173/esemenyek.html");
-    
-    //window.open("https://localhost:5173/esemenyek.html");
-    //location.reload("https://localhost:5173/esemenyek.html");
-
-    //window.location.href = "http://localhost:5173/esemenyek.html";
-    //window.close();
-    //window.location.replace("http://localhost:5173/esemenyek.html");
 });
