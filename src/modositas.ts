@@ -1,8 +1,14 @@
+
+/**
+ * Importáljuk a szükséges fájlokat
+ */
 import { updateEvent } from "./szervermuveletek";
 import { Event } from "./Event";
 import { egeszNapos } from "./kliensmuveletek";
 import { validacio } from "./validacio";
-
+/**
+ * Globális változók az esemény módosításához
+ */
 let id = 0;
 let nev = "";
 let datum = "";
@@ -12,15 +18,24 @@ let ido = "";
 let prioritas = "";
 let emlekezteto = "";
 let reszletek = "";
-
+/**
+ * Eseménykezelő a "All Day" checkboxra történő kattintáskor.
+ * Az időinput szerkesztésének engedélyezése vagy tiltása.
+ */
 document.getElementById('allDayModify')!.addEventListener('click',egeszNaposParamNelkul);
-
-function egeszNaposParamNelkul()
+/**
+ * Az időinput szerkesztésének engedélyezése vagy tiltása.
+ * @returns {void}
+ */
+export function egeszNaposParamNelkul()
 {
     egeszNapos('timeModify');
 }
+/**
+ * Az oldal betöltődésekor futó eseménykezelő.
+ * Beállítja a módosítandó esemény adatait a megfelelő helyekre az űrlapon.
+ */
 
-//Módosítás gombra történő kattintáskor
 document.addEventListener('DOMContentLoaded', () => {
     const params = new URLSearchParams(window.location.search);
 
@@ -54,7 +69,10 @@ document.addEventListener('DOMContentLoaded', () => {
     (document.getElementById('detailsModify') as HTMLInputElement).value = reszletek;
 }
 );
-
+/**
+ * Eseménykezelő a "Módosítás" gombra történő kattintáskor.
+ * Frissíti az esemény adatait és küldi a módosítást a szerverre.
+ */
 document.getElementById('buttonModify')!.addEventListener('click',() => {
     nev = (document.getElementById('nameModify') as HTMLInputElement).value;
     datum = (document.getElementById('dateModify') as HTMLInputElement).value;

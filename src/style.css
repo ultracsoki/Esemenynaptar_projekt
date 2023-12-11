@@ -1,17 +1,35 @@
+/**
+ * Stílusok a `.piros` osztályhoz.
+ * Háttérszín: rgb(241, 158, 158).
+ */
 .piros {
     background-color: rgb(241, 158, 158);
 }
-
+/**
+ * Stílusok a `.piros` osztályhoz.
+ * Háttérszín: rgb(241, 158, 158).
+ */
 .sarga {
     background-color: rgb(242, 247, 166);
 }
-
+/**
+ * Stílusok a `.zold` osztályhoz.
+ * Háttérszín: rgb(166, 247, 171).
+ */
 .zold {
     background-color: rgb(166, 247, 171);
 }
+/**
+ * Stílusok a `.blue` osztályhoz.
+ * Szövegszín: rgb(96, 102, 184).
+ */
 .blue{
     color: rgb(96, 102, 184);
 }
+/**
+ * Általános stílusok a `.card` osztályhoz.
+ * Felső margó: 3px.
+ */
 .card{
 margin-top: 3px;
 }

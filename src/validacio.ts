@@ -1,3 +1,17 @@
+/**
+ * Validációs függvényeket tartalmazó modul.
+ * @module validacio
+ */
+
+/**
+ * Ellenőrzi az esemény adatainak validitását.
+ * @param {string} nev - Az esemény neve.
+ * @param {string} datum - Az esemény dátuma.
+ * @param {string} ido - Az esemény időpontja.
+ * @param {boolean} egesznapos - Igaz, ha az esemény egész napos, egyébként hamis.
+ * @param {string} emlekezteto - Az esemény emlékeztető szövege.
+ * @throws {Error} - Hiba, ha az adatok nem megfelelőek.
+ */
 export function validacio(nev: string, datum: string, ido :string, egesznapos: boolean, emlekezteto: string)
 {
     if (nev.trim() === '') {

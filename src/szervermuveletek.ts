@@ -1,8 +1,16 @@
 import { Event } from './Event';
- 
+ /**
+ * Az alkalmazás betöltődésekor lefutó eseménykezelő.
+ * Az összes esemény megjelenítése.
+ */
 document.addEventListener('DOMContentLoaded', displayAllEvents);
  
-//Események letöltése
+/**
+ * Az összes esemény megjelenítése a felületen.
+ * Aszinkron függvény, ami letölti az eseményeket a szerverről és megjeleníti őket.
+ * @async
+ * @returns {Promise<void>}
+ */
 export async function displayAllEvents() {
     try {
         const response = await fetch('https://retoolapi.dev/dFqFgC/data');
@@ -21,9 +29,13 @@ export async function displayAllEvents() {
         console.error('Hiba történt a letöltés közben:', );
     }
 }
+/**
+ * Az események listázása és megjelenítése a felületen.
+ * @param {Event[]} eventList - Az események listája.
+ * @returns {void}
+ */
 
-//Események kilistázása a képernyőre
-function renderEventList(eventList: Event[]) {
+export function renderEventList(eventList: Event[]) {
     const eventListContainer = document.getElementById('eventList');
     if (!eventListContainer) {
         console.error('A "eventList" elem nem található a DOM-ban.');
@@ -113,8 +125,13 @@ function renderEventList(eventList: Event[]) {
    
 }
 
-//Adatbázisból való element törlése
-async function deleteEvent(eventId: string | null) {
+/**
+ * Esemény törlése a szerverről.
+ * @async
+ * @param {string | null} eventId - Az esemény azonosítója.
+ * @returns {Promise<void>}
+ */
+export async function deleteEvent(eventId: string | null) {
     try {
         // nem e null az id
         if (eventId === null) {
@@ -136,6 +153,13 @@ async function deleteEvent(eventId: string | null) {
         console.error('Hiba történt az esemény törlése közben:', error);
     }
 }
+/**
+ * Az esemény módosítása a szerveren az azonosító alapján.
+ * @async
+ * @param {string} eventId - Az esemény azonosítója.
+ * @param {Event} updatedEvent - Az aktualizált esemény objektum.
+ * @throws {Error} Ha hiba történik az esemény módosítása közben.
+ */
 
 export async function updateEvent(eventId: string, updatedEvent: Event) {
     try {
