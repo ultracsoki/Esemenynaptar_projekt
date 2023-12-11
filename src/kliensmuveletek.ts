@@ -1,9 +1,13 @@
 import { Event } from "./Event";
 import { validacio } from "./validacio";
-
+/*
 document.getElementById('buttonAdd')!.addEventListener('click', addNewEvent);
 document.getElementById('allDay')!.addEventListener('input', egeszNaposParamNelkul);
-
+*/
+const elem = document.getElementById('buttonAdd');
+elem?.addEventListener('click', addNewEvent);
+const elem2 = document.getElementById('allDay');
+elem2?.addEventListener('click', egeszNaposParamNelkul);
 function egeszNaposParamNelkul()
 {
     egeszNapos('time');
